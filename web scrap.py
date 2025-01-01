@@ -18,7 +18,7 @@ price_con = p_soup.findAll('h6',{'class':'product-price'})
 filename = 'smartphone.csv'
 
 # create .csv file
-f = open(filename, 'w')
+f = open(filename, 'w', encoding='utf-8')
 
 # create headers of .csv file
 headers = 'Phone Name, Price\n'
@@ -38,6 +38,8 @@ for i in name_con:
 for i in price_con:
     p_price.append(i.span.b.text)
 
+# Add all listed content to the CSV file
+for i, j in zip(p_name, p_price):
+    f.write(f"{i}, {j}\n")
 
-
-print(p_price)
+f.close()
